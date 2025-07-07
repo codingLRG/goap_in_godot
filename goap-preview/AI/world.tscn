@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3v6sy6xcpiwf"]
+
+[ext_resource type="PackedScene" uid="uid://dqb28mcljftub" path="res://AI/ai_character.tscn" id="1_kpkla"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_70awv"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_4nwyg"]
+sky_material = SubResource("ProceduralSkyMaterial_70awv")
+
+[sub_resource type="Environment" id="Environment_2xnau"]
+background_mode = 2
+sky = SubResource("Sky_4nwyg")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2xnau")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.416281, -0.659537, 0.625877, 0, 0.688355, 0.725374, -0.909236, 0.301959, -0.286549, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.701121, 0.713042, 0, -0.713042, 0.701121, 0, 14.1752, 14.9639)
+
+[node name="Testing Box" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="Floor" type="CSGBox3D" parent="Testing Box"]
+size = Vector3(23, 4, 24)
+
+[node name="Empty Space" type="CSGBox3D" parent="Testing Box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+operation = 2
+size = Vector3(22, 4, 23)
+
+[node name="AI Character" parent="." instance=ExtResource("1_kpkla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.145053, 0, -1.24599)

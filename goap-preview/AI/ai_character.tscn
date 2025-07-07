@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqb28mcljftub"]
+
+[ext_resource type="Script" uid="uid://c1d3kjwwvpf4" path="res://AI/Character Controller/ai_character.gd" id="1_5e5ec"]
+[ext_resource type="Script" uid="uid://b4fiswafs5d0g" path="res://AI/GOAP/goap_action.gd" id="2_lxb2u"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q57m0"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lxb2u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ihddh"]
+albedo_color = Color(1, 0.180392, 1, 1)
+
+[node name="AI Character" type="CharacterBody3D"]
+script = ExtResource("1_5e5ec")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_q57m0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_lxb2u")
+surface_material_override/0 = SubResource("StandardMaterial3D_ihddh")
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("2_lxb2u")
